@@ -1,0 +1,88 @@
+{
+  "manifest_version": 3,
+  "name": "PR Diff Counter",
+  "version": "0.1.0",
+  "description": "Shows +added/−deleted lines next to each pull request in the GitHub list.",
+  "icons": {
+    "16": "icons/light/icon16.png",
+    "32": "icons/light/icon32.png",
+    "48": "icons/light/icon48.png",
+    "128": "icons/light/icon128.png"
+  },
+  "icon_variants": [
+    {
+      "16": "icons/light/icon16.png",
+      "32": "icons/light/icon32.png",
+      "48": "icons/light/icon48.png",
+      "128": "icons/light/icon128.png",
+      "color_schemes": [
+        "light"
+      ]
+    },
+    {
+      "16": "icons/dark/icon16.png",
+      "32": "icons/dark/icon32.png",
+      "48": "icons/dark/icon48.png",
+      "128": "icons/dark/icon128.png",
+      "color_schemes": [
+        "dark"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "PR Diff Counter — options",
+    "default_icon": {
+      "16": "icons/light/icon16.png",
+      "32": "icons/light/icon32.png",
+      "48": "icons/light/icon48.png",
+      "128": "icons/light/icon128.png"
+    },
+    "default_icon_variants": [
+      {
+        "16": "icons/light/icon16.png",
+        "32": "icons/light/icon32.png",
+        "48": "icons/light/icon48.png",
+        "128": "icons/light/icon128.png",
+        "color_schemes": [
+          "light"
+        ]
+      },
+      {
+        "16": "icons/dark/icon16.png",
+        "32": "icons/dark/icon32.png",
+        "48": "icons/dark/icon48.png",
+        "128": "icons/dark/icon128.png",
+        "color_schemes": [
+          "dark"
+        ]
+      }
+    ]
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.github.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*"
+      ],
+      "js": [
+        "src/content.js"
+      ],
+      "css": [
+        "src/content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "src/options.html",
+    "open_in_tab": true
+  }
+}

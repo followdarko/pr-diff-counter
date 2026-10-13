@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "PR Diff Counter",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Shows +added/−deleted lines next to each pull request in the GitHub list.",
   "icons": {
     "16": "icons/light/icon16.png",
@@ -9,26 +9,6 @@
     "48": "icons/light/icon48.png",
     "128": "icons/light/icon128.png"
   },
-  "icon_variants": [
-    {
-      "16": "icons/light/icon16.png",
-      "32": "icons/light/icon32.png",
-      "48": "icons/light/icon48.png",
-      "128": "icons/light/icon128.png",
-      "color_schemes": [
-        "light"
-      ]
-    },
-    {
-      "16": "icons/dark/icon16.png",
-      "32": "icons/dark/icon32.png",
-      "48": "icons/dark/icon48.png",
-      "128": "icons/dark/icon128.png",
-      "color_schemes": [
-        "dark"
-      ]
-    }
-  ],
   "action": {
     "default_title": "PR Diff Counter — options",
     "default_icon": {
@@ -36,27 +16,7 @@
       "32": "icons/light/icon32.png",
       "48": "icons/light/icon48.png",
       "128": "icons/light/icon128.png"
-    },
-    "default_icon_variants": [
-      {
-        "16": "icons/light/icon16.png",
-        "32": "icons/light/icon32.png",
-        "48": "icons/light/icon48.png",
-        "128": "icons/light/icon128.png",
-        "color_schemes": [
-          "light"
-        ]
-      },
-      {
-        "16": "icons/dark/icon16.png",
-        "32": "icons/dark/icon32.png",
-        "48": "icons/dark/icon48.png",
-        "128": "icons/dark/icon128.png",
-        "color_schemes": [
-          "dark"
-        ]
-      }
-    ]
+    }
   },
   "permissions": [
     "storage"

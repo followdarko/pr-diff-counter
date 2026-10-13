@@ -46,7 +46,8 @@ inside `content.js`.
 ## Fragile bit
 
 GitHub's new PR list is React with CSS modules; class names include a build
-hash (`Description-module__container__hpqJz`) and change on deploys. The
-code latches onto `data-testid="listitem-title-link"` and the prefix
-`[class*="Description-module__container"]`, but if GitHub renames those too
-the two selectors at the top of `src/content.js` are what need fixing.
+hash (`description__mZjLFE`) and change on deploys. The code latches onto
+`data-testid="listitem-title-link"` for rows and the parent of
+`data-testid="timestamp-container"` for the metadata line, with class-prefix
+fallbacks. If GitHub renames those too, the selectors at the top of
+`src/content.js` are what need fixing.

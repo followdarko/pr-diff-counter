@@ -1,5 +1,6 @@
 const ROW_LINK = 'a[data-testid="listitem-title-link"]';
-const META = '[class*="Description-module__container"]';
+const TIMESTAMP = '[data-testid="timestamp-container"]';
+const META = '[class*="description__"], [class*="Description-module__container"]';
 const PULLS_PATH = /^\/[^/]+\/[^/]+\/pulls\/?$/;
 
 const template = document.createElement('template');
@@ -49,7 +50,14 @@ function render(row, additions, deletions) {
   node.children[1].textContent = `+${additions}`;
   node.children[3].textContent = `-${deletions}`;
   node.title = `${additions} added, ${deletions} removed`;
-  (row.querySelector(META) || row).appendChild(node);
+  metaContainer(row).appendChild(node);
+}
+
+// The row <li> is a CSS grid, so falling back to it would drop the counter
+// into an implicit grid cell; the timestamp's parent is the metadata line.
+function metaContainer(row) {
+  const stamp = row.querySelector(TIMESTAMP);
+  return (stamp && stamp.parentElement) || row.querySelector(META) || row;
 }
 
 const NOTICES = {

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "PR Diff Counter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Shows +added/−deleted lines next to each pull request in the GitHub list.",
   "icons": {
     "16": "icons/light/icon16.png",

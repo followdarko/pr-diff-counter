@@ -34,7 +34,12 @@ function collect() {
   const jobs = [];
   for (const link of document.querySelectorAll(ROW_LINK)) {
     const row = link.closest('li');
-    if (!row || row.querySelector('.prdc')) continue;
+    if (!row) continue;
+    const existing = row.querySelector('.prdc');
+    if (existing) {
+      place(row, existing);
+      continue;
+    }
     const m = /^\/([^/]+)\/([^/]+)\/pull\/(\d+)/.exec(new URL(link.href).pathname);
     if (!m) continue;
     const key = `${m[1]}/${m[2]}#${m[3]}`;
@@ -50,14 +55,16 @@ function render(row, additions, deletions) {
   node.children[1].textContent = `+${additions}`;
   node.children[3].textContent = `-${deletions}`;
   node.title = `${additions} added, ${deletions} removed`;
-  metaContainer(row).appendChild(node);
+  place(row, node);
 }
 
-// The row <li> is a CSS grid, so falling back to it would drop the counter
-// into an implicit grid cell; the timestamp's parent is the metadata line.
-function metaContainer(row) {
+// Review status and the checks badge stream in after the row first renders and
+// React appends them behind the counter, so it is moved back to the end on
+// every pass. The row <li> is a CSS grid, hence the metadata line, not the row.
+function place(row, node) {
   const stamp = row.querySelector(TIMESTAMP);
-  return (stamp && stamp.parentElement) || row.querySelector(META) || row;
+  const meta = (stamp && stamp.parentElement) || row.querySelector(META) || row;
+  if (node.parentElement !== meta || node.nextElementSibling) meta.appendChild(node);
 }
 
 const NOTICES = {
